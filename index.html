@@ -5,84 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>rock paper scissors</title>
+  <title>RPS game</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
   <script>
 
-    //returns randomly "rock", "paper" or "scissors"
-    function computerPlay() {
-      let randomNumberZeroToTwo = Math.floor(Math.random() * 3);
-      switch (randomNumberZeroToTwo) {
-        case 0:
-          return "rock";
-          break;
-        case 1:
-          return "paper";
-          break;
-        case 2:
-          return "scissors";
-          break;
-      }
-    } // computerPlay() done
-
-    // takes player and computer plays and returns the winner
-    function oneRound(playerSelection, computerSelection) {
-      let playerSelectionLowerCase = playerSelection.toLowerCase();
-      if (playerSelectionLowerCase.toLowerCase() === "rock") {
-        switch (computerSelection) {
-          case "rock":
-            return "tie";
-            break;
-          case "paper":
-            return "lose";
-            break;
-          case "scissors":
-            return "win";
-            break;
-        }
-      } else if (playerSelectionLowerCase === "paper") {
-        switch (computerSelection) {
-          case "rock":
-            return "win";
-            break;
-          case "paper":
-            return "tie";
-            break;
-          case "scissors":
-            return "lose";
-            break;
-        }
-      } else if (playerSelectionLowerCase === "scissors") {
-        switch (computerSelection) {
-          case "rock":
-            return "lose";
-            break;
-          case "paper":
-            return "win";
-            break;
-          case "scissors":
-            return "tie";
-            break;
-        }
-      }
-    } // oneRound() done
-
-    // plays 5 times oneRound() and outputs the winner (call from console!)
-    function game() {
-      let score = 0;
-      for (let i = 0; i < 5; i++) {
-        let playerInput = prompt("Rock, paper or scissors?");
-        let round = oneRound(playerInput, computerPlay());
-        if (round === "win") {
-          score++;
-        } else if (round === "lose") {
-          score--
-        }
-      }
-      (score > 0) ? document.getElementById("message").innerHTML = "WIN" : (score < 0) ? document.getElementById("message").innerHTML = "LOSE" : document.getElementById("message").innerHTML = "TIE";
-    } // game() done
+    
 
 
   </script>
