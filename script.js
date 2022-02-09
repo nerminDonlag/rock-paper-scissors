@@ -1,23 +1,68 @@
+// the variables
+let score = 0;
+let playerSelection = "";
+let computerSelection = "";
+let roundResult = ""
+
+// the selectors
+let gameResult = document.getElementById('result');
+let rockButton = document.getElementById('rock-btn');
+let paperButton = document.getElementById('paper-btn');
+let scissorsButton = document.getElementById('scissors-btn');
+
+// button click actions
+rockButton.addEventListener('click', () => {
+  let result = onePlay('rock');
+  keepScore(result);
+  displayResult(score);
+});
+paperButton.addEventListener('click', () => {
+  let result = onePlay('paper');
+  keepScore(result);
+  displayResult(score);
+});
+scissorsButton.addEventListener('click', () => {
+  let result = onePlay('scissors');
+  keepScore(result);
+  displayResult(score);
+});
+
+// takes players play and returns round result
+function onePlay(playerInput) {
+  playerSelection = playerInput;
+  computerSelection = computerPlay();
+  roundResult = oneRound(playerSelection, computerSelection);
+  return roundResult;
+}
+
+// updates score
+function keepScore(roundResult) {
+  if (roundResult === 'win') {
+    score++;
+  } else if (roundResult === 'lose') {
+    score--;
+  }
+
+  // displays current state of game
+  document.getElementById('info').innerHTML = `You played: ${playerSelection} <br>Computer played: ${computerSelection}<br>This round: You ${roundResult}<br> Total score: ${score}`;
+}
+
 //returns randomly "rock", "paper" or "scissors"
 function computerPlay() {
   let randomNumberZeroToTwo = Math.floor(Math.random() * 3);
   switch (randomNumberZeroToTwo) {
     case 0:
       return "rock";
-      break;
     case 1:
       return "paper";
-      break;
     case 2:
       return "scissors";
-      break;
   }
 }
 
 // takes player and computer plays and returns the winner
 function oneRound(playerSelection, computerSelection) {
-  let playerSelectionLowerCase = playerSelection.toLowerCase();
-  if (playerSelectionLowerCase === "rock") {
+  if (playerSelection === "rock") {
     switch (computerSelection) {
       case "rock":
         return "tie";
@@ -26,7 +71,7 @@ function oneRound(playerSelection, computerSelection) {
       case "scissors":
         return "win";
     }
-  } else if (playerSelectionLowerCase === "paper") {
+  } else if (playerSelection === "paper") {
     switch (computerSelection) {
       case "rock":
         return "win";
@@ -35,7 +80,7 @@ function oneRound(playerSelection, computerSelection) {
       case "scissors":
         return "lose";
     }
-  } else if (playerSelectionLowerCase === "scissors") {
+  } else if (playerSelection === "scissors") {
     switch (computerSelection) {
       case "rock":
         return "lose";
@@ -47,17 +92,28 @@ function oneRound(playerSelection, computerSelection) {
   }
 }
 
-// plays 5 times oneRound() and outputs the winner (call from console!)
-function game() {
-  let score = 0;
-  for (let i = 0; i < 5; i++) {
-    let playerInput = prompt("Rock, paper or scissors?");
-    let round = oneRound(playerInput, computerPlay());
-    if (round === "win") {
-      score++;
-    } else if (round === "lose") {
-      score--
-    }
+// game state + reset button if game over
+function displayResult(currentScore) {
+  if (currentScore > 2) {
+    gameResult.innerHTML = 'You WON the game! :)<br>';
+    gameResult.appendChild(resetButton);
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
+  } else if (currentScore < -2) {
+    gameResult.innerHTML = 'You LOST the game! :(<br>';
+    gameResult.appendChild(resetButton);
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
+  } else {
+    gameResult.innerHTML = 'still playing...';
   }
-  (score > 0) ? document.getElementById("message").innerHTML = "WIN" : (score < 0) ? document.getElementById("message").innerHTML = "LOSE" : document.getElementById("message").innerHTML = "TIE";
 }
+
+// creates reset button
+const resetButton = document.createElement('button');
+resetButton.innerHTML = 'Click to play again!';
+resetButton.addEventListener('click', () => {
+  location.reload();
+})
