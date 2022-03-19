@@ -1,4 +1,6 @@
 # rock-paper-scissors
 TOP project
 
-I am trying to build a rock-paper-scissors game
+A simple r-p-s game
+
+by [Andy](https://github.com/nerminDonlag)

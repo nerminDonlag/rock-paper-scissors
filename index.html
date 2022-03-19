@@ -5,24 +5,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RPS game</title>
+  <title>RPS Game</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 
 <body>
-  <h1> Rock, paper, scissors Game</h1>
-  <div>by <a href="https://github.com/nerminDonlag" target="_blank">Andy</a></div>
-  <h2>To play => click on button!</h2>
-  <p>You win if you get a score of 3, or lose if you get -3</p>
-  <div id="player-selection-btns">
-    <button id="rock-btn">Play Rock</button>
-    <button id="paper-btn">Play Paper</button>
-    <button id="scissors-btn">Play Scissors</button>
-  </div>
-  <div id="info"></div>
-  <div id="result"></div>
 
+  <div class="header">
+    ROCK PAPER SCISSORS
+  </div>
+
+  <div class="main">
+    <div class="rules">First to score 5 points wins</div>
+    <div class="match">
+      <div class="player">
+        <div class="choice">R</div>
+        <div class="score">1</div>
+      </div>
+      <div class="computer">
+        <div class="choice">P</div>
+        <div class="score">0</div>
+      </div>
+    </div>
+    <div class="options">
+      <div class="rock">Rock</div>
+      <div class="paper">Paper</div>
+      <div class="scissors">Scissors</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://github.com/nerminDonlag" target="_blank">by Andy</a>
+  </div>
 
 </body>
 
