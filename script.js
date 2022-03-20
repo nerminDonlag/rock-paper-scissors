@@ -11,6 +11,10 @@ const rockBtn = main.querySelector('.rock')
 const paperBtn = main.querySelector('.paper')
 const scissorsBtn = main.querySelector('.scissors')
 
+const modal = document.querySelector('.modal')
+const winner = modal.querySelector('.winner')
+const modalBtn = modal.querySelector('button')
+
 rockBtn.addEventListener('click', () => {
   game.humanChoice = 'R'
   game.makeChoice()
@@ -32,6 +36,11 @@ scissorsBtn.addEventListener('click', () => {
   renderGame()
   tellWinner()
 });
+
+modalBtn.addEventListener('click', () => {
+  renderGame()
+  modal.style.display = 'none'
+})
 
 const game = {
   humanName: 'Player',
@@ -85,9 +94,13 @@ function keepScore() {
 
 function tellWinner() {
   if(game.humanScore === 5) {
+    winner.innerHTML = `${game.humanName} won!`
+    modal.style.display = 'flex'
     resetGame()
   }
   if(game.computerScore === 5) {
+    winner.innerHTML = `${game.computerName} won!`
+    modal.style.display = 'flex'
     resetGame()
   }
 }
