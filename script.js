@@ -24,24 +24,15 @@ const startBtn = start.querySelector('button')
 //bind
 rockBtn.addEventListener('click', () => {
   game.humanChoice = 'R'
-  game.makeChoice()
-  keepScore()
-  renderGame()
-  tellWinner()
+  handleChoice()
 });
 paperBtn.addEventListener('click', () => {
   game.humanChoice = 'P'
-  game.makeChoice()
-  keepScore()
-  renderGame()
-  tellWinner()
+  handleChoice()
 });
 scissorsBtn.addEventListener('click', () => {
   game.humanChoice = 'S'
-  game.makeChoice()
-  keepScore()
-  renderGame()
-  tellWinner()
+  handleChoice()
 });
 
 modalBtn.addEventListener('click', () => {
@@ -66,11 +57,11 @@ startBtn.addEventListener('click', () => {
 
 //game object
 const game = {
-  humanName: 'Player',
-  humanChoice: '-',
+  humanName: 'Human',
+  humanChoice: '',
   humanScore: 0,
   computerName: 'Computer',
-  computerChoice: '-',
+  computerChoice: '',
   computerScore: 0,
   makeChoice: function () {
     let temp = Math.floor(Math.random() * 3)
@@ -89,6 +80,13 @@ const game = {
 }
 
 //functions
+function handleChoice() {
+  game.makeChoice()
+  keepScore()
+  renderGame()
+  tellWinner()
+}
+
 function keepScore() {
   if (game.humanChoice === 'R') {
     if (game.computerChoice === 'P') {
@@ -130,10 +128,10 @@ function tellWinner() {
 }
 
 function resetGame() {
-  game.humanChoice = '-'
+  game.humanChoice = ''
   humanChoice.src = 'blank.png'
   game.humanScore = 0
-  game.computerChoice = '-'
+  game.computerChoice = ''
   computerChoice.src = 'blank.png'
   game.computerScore = 0
 }
