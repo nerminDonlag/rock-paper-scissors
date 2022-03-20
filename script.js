@@ -3,8 +3,8 @@ const human = main.querySelector('.human')
 const computer = main.querySelector('.computer')
 const humanName = human.querySelector('.name')
 const computerName = computer.querySelector('.name')
-const humanChoice = human.querySelector('.choice')
-const computerChoice = computer.querySelector('.choice')
+const humanChoice = human.querySelector('img')
+const computerChoice = computer.querySelector('img')
 const humanScore = human.querySelector('.score')
 const computerScore = computer.querySelector('.score')
 const rockBtn = main.querySelector('.rock')
@@ -82,23 +82,23 @@ function keepScore() {
       game.humanScore++
     }
   }
-  if(game.humanChoice === 'S') {
-    if(game.computerChoice === 'R') {
+  if (game.humanChoice === 'S') {
+    if (game.computerChoice === 'R') {
       game.computerScore++
     }
-    if(game.computerChoice === 'P') {
+    if (game.computerChoice === 'P') {
       game.humanScore++
     }
   }
 }
 
 function tellWinner() {
-  if(game.humanScore === 5) {
+  if (game.humanScore === 5) {
     winner.innerHTML = `${game.humanName} won!`
     modal.style.display = 'flex'
     resetGame()
   }
-  if(game.computerScore === 5) {
+  if (game.computerScore === 5) {
     winner.innerHTML = `${game.computerName} won!`
     modal.style.display = 'flex'
     resetGame()
@@ -107,16 +107,38 @@ function tellWinner() {
 
 function resetGame() {
   game.humanChoice = '-'
+  humanChoice.src = 'blank.png'
   game.humanScore = 0
   game.computerChoice = '-'
+  computerChoice.src = 'blank.png'
   game.computerScore = 0
 }
 
 function renderGame() {
   humanName.innerHTML = `${game.humanName}`
   computerName.innerHTML = `${game.computerName}`
-  humanChoice.innerHTML = `${game.humanChoice}`
-  computerChoice.innerHTML = `${game.computerChoice}`
   humanScore.innerHTML = `${game.humanScore}`
   computerScore.innerHTML = `${game.computerScore}`
+  switch (game.humanChoice) {
+    case 'R':
+      humanChoice.src = 'rock.png'
+      break
+    case 'P':
+      humanChoice.src = 'paper.png'
+      break
+    case 'S':
+      humanChoice.src = 'scissors.png'
+      break
+  }
+  switch (game.computerChoice) {
+    case 'R':
+      computerChoice.src = 'rock.png'
+      break
+    case 'P':
+      computerChoice.src = 'paper.png'
+      break
+    case 'S':
+      computerChoice.src = 'scissors.png'
+      break
+  }
 }
