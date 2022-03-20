@@ -1,3 +1,4 @@
+//cache
 const main = document.querySelector('.main')
 const human = main.querySelector('.human')
 const computer = main.querySelector('.computer')
@@ -15,6 +16,12 @@ const modal = document.querySelector('.modal')
 const winner = modal.querySelector('.winner')
 const modalBtn = modal.querySelector('button')
 
+const start = document.querySelector('.start')
+const humanInput = document.getElementById('human')
+const computerInput = document.getElementById('computer')
+const startBtn = start.querySelector('button')
+
+//bind
 rockBtn.addEventListener('click', () => {
   game.humanChoice = 'R'
   game.makeChoice()
@@ -42,6 +49,22 @@ modalBtn.addEventListener('click', () => {
   modal.style.display = 'none'
 })
 
+startBtn.addEventListener('click', () => {
+  if (humanInput.value) {
+    game.humanName = humanInput.value
+  } else {
+    game.humanName = 'Human'
+  }
+  if (computerInput.value) {
+    game.computerName = computerInput.value
+  } else {
+    game.computerName = 'Computer'
+  }
+  renderGame()
+  start.style.display = 'none'
+}, { once: true })
+
+//game object
 const game = {
   humanName: 'Player',
   humanChoice: '-',
@@ -65,6 +88,7 @@ const game = {
   },
 }
 
+//functions
 function keepScore() {
   if (game.humanChoice === 'R') {
     if (game.computerChoice === 'P') {
