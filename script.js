@@ -11,6 +11,7 @@ const computerScore = computer.querySelector('.score')
 const rockBtn = main.querySelector('.rock')
 const paperBtn = main.querySelector('.paper')
 const scissorsBtn = main.querySelector('.scissors')
+const message = main.querySelector('.message')
 
 const modal = document.querySelector('.modal')
 const winner = modal.querySelector('.winner')
@@ -63,6 +64,7 @@ const game = {
   computerName: 'Computer',
   computerChoice: '',
   computerScore: 0,
+  message: 'Start game by choosing rock, paper or scissors!',
   makeChoice: function () {
     let temp = Math.floor(Math.random() * 3)
     switch (temp) {
@@ -91,25 +93,40 @@ function keepScore() {
   if (game.humanChoice === 'R') {
     if (game.computerChoice === 'P') {
       game.computerScore++
+      game.message = `${game.computerName} won this round!`
     }
     if (game.computerChoice === 'S') {
       game.humanScore++
+      game.message = `${game.humanName} won this round!`
+    }
+    if (game.computerChoice === 'R') {
+      game.message = "This round is a tie!"
     }
   }
   if (game.humanChoice === 'P') {
     if (game.computerChoice === 'S') {
       game.computerScore++
+      game.message = `${game.computerName} won this round!`
     }
     if (game.computerChoice === 'R') {
       game.humanScore++
+      game.message = `${game.humanName} won this round!`
+    }
+    if (game.computerChoice === 'P') {
+      game.message = "This round is a tie!"
     }
   }
   if (game.humanChoice === 'S') {
     if (game.computerChoice === 'R') {
       game.computerScore++
+      game.message = `${game.computerName} won this round!`
     }
     if (game.computerChoice === 'P') {
       game.humanScore++
+      game.message = `${game.humanName} won this round!`
+    }
+    if (game.computerChoice === 'S') {
+      game.message = "This round is a tie!"
     }
   }
 }
@@ -134,6 +151,7 @@ function resetGame() {
   game.computerChoice = ''
   computerChoice.src = 'blank.png'
   game.computerScore = 0
+  game.message = 'Start game by choosing rock, paper or scissors!'
 }
 
 function renderGame() {
@@ -141,6 +159,7 @@ function renderGame() {
   computerName.innerHTML = `${game.computerName}`
   humanScore.innerHTML = `${game.humanScore}`
   computerScore.innerHTML = `${game.computerScore}`
+  message.innerHTML = `${game.message}`
   switch (game.humanChoice) {
     case 'R':
       humanChoice.src = 'rock.png'
