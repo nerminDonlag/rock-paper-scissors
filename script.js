@@ -100,7 +100,7 @@ function keepScore() {
       game.message = `${game.humanName} won this round!`
     }
     if (game.computerChoice === 'R') {
-      game.message = "This round is a tie!"
+      game.message = "This round was a tie!"
     }
   }
   if (game.humanChoice === 'P') {
@@ -113,7 +113,7 @@ function keepScore() {
       game.message = `${game.humanName} won this round!`
     }
     if (game.computerChoice === 'P') {
-      game.message = "This round is a tie!"
+      game.message = "This round was a tie!"
     }
   }
   if (game.humanChoice === 'S') {
@@ -126,7 +126,7 @@ function keepScore() {
       game.message = `${game.humanName} won this round!`
     }
     if (game.computerChoice === 'S') {
-      game.message = "This round is a tie!"
+      game.message = "This round was a tie!"
     }
   }
 }
